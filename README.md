@@ -58,4 +58,4 @@ I made it nonetheless, as it was a fun diversion.
 
 So, here it is, I guess. I dunno. Take it for what it's worth.
 
-#### Hours wasted on this project: at least 2
+#### Hours wasted on this project: probably somewhere around 3
