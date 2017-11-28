@@ -37,7 +37,8 @@ ipq.insert(0, 0);
 ipq.insert(1, 1);
 
 while (!ipq.empty()) {
-    // should output 0 followed by a bunch of random numbers in [0..1] followed by 1
+    // should output 0, followed by a bunch of random numbers in [0..1]
+    // (in order), followed by 1
     console.log(ipq.pop());
 }
 ```
