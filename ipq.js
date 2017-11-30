@@ -164,48 +164,17 @@ function IndexPriorityQueue(size, less) {
      * let the element "sink" down, being replaced by the "lightest" of its
      * children.
      *
-     * NOTE: There should be a way easier way to do this
-     *
      * @param position The logical position of the element which should sink.
      */
     this.sink = (position) => {
         let pos = this.pq[position]; // position is logical position, pos is physical position
-        let posNotFound = true;
-        while (posNotFound) {
-            const l = 2*pos; const r = 2*pos+1;
-            if (this.elementAtIndex(this.qp[l])) {
-                if (!this.elementAtIndex(this.qp[r])) {
-                    if (this.less(this.elements[l], this.elements[pos])) {
-                        exch(l, pos);
-                        updq(position, l, this.qp[l], pos);
-                        pos = l;
-                    }
-                    else {
-                        posNotFound = false; // don't sink further
-                    }
-                }
-                else if (this.less(this.elements[l], this.elements[r])) {
-                    if (this.less(this.elements[l], this.elements[pos])) {
-                        exch(l, pos);
-                        updq(position, l, this.qp[l], pos);
-                        pos = l;
-                    }
-                    else {
-                        posNotFound = false; // don't sink further
-                    }
-                }
-                else if (this.less(this.elements[r], this.elements[pos])) {
-                    exch(r, pos);
-                    updq(position, r, this.qp[r], pos);
-                    pos = r;
-                }
-                else {
-                    posNotFound = false; // don't sink further
-                }
-            }
-            else {
-                posNotFound = false; // at leaf node
-            }
+        while (2*pos < this.length) {
+            let j = 2*pos;
+            if (j+1 < this.length && this.less(this.elements[j+1], this.elements[j])) j++;
+            if (!this.less(this.elements[j], this.elements[pos])) break;
+            exch(j, pos);
+            updq(position, j, this.qp[j], pos);
+            pos = j;
         }
     }
 }
