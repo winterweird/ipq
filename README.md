@@ -14,11 +14,9 @@ including it in your project. I don't really know about the best practices for
 web development, so I just created a function named IndexPriorityQueue with a
 set of functions as its API. Do with it what you'd like.
 
-There isn't really a lot of encapsulation going on at the moment, and people
-can easily fuck with the data invariants if they so desire, but if they use
-the API then the invariants _should_ be preserved, or so my (admittedly not 100%
-thorough) tests have led me to believe. There is some bare-bones error handling,
-but no type checks or anything fancy.
+If the user uses the API of the IPQ in a reasonable way, the data invariants
+should be preserved. There is some bare-bones error handling, but no type checks
+or anything fancy.
 
 The API is described in JavaDoc style comments in the code (`ipq.js`). I might
 also get around to producing some actual documentation later, or maybe not.
@@ -28,7 +26,7 @@ also get around to producing some actual documentation later, or maybe not.
 ```js
 // Construct the IPQ
 let ipq = new IndexPriorityQueue(16);
-for (let i = 0; i < ipq.capacity; i++) {
+for (let i = 0; i < ipq.capacity(); i++) {
     ipq.push(Math.random());
 }
 
