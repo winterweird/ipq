@@ -62,15 +62,13 @@ function IndexPriorityQueue(size, less) {
             this.pq[position] = this.length;
             this.qp[this.length++] = position;
         }
-        const pos = this.pq[position];
-        const p = Math.floor(pos/2);
-        if (pos !== 0 && this.less(this.elements[pos], this.elements[p])) {
-            this.swim(position);
-        }
-        else if (this.elementAtIndex(2*pos)) {
-            this.sink(position);
-        }
-        // else: do nothing
+        // only one of these two should actually happen - if the first changes
+        // the underlying PQ, the second should not, as neither swim nor sink
+        // should modify the PQ unless they detect that the element at the given
+        // position should be higher or lower depending on the size of its
+        // parent or children
+        this.swim(position);
+        this.sink(position);
     }
 
     /**
